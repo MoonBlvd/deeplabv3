@@ -10,14 +10,15 @@ from resnet import ResNet18_OS16, ResNet34_OS16, ResNet50_OS16, ResNet101_OS16, 
 from aspp import ASPP, ASPP_Bottleneck
 
 class DeepLabV3(nn.Module):
-    def __init__(self, model_id, project_dir):
+    def __init__(self, model_id, project_dir, is_train=True):
         super(DeepLabV3, self).__init__()
 
         self.num_classes = 20
 
         self.model_id = model_id
         self.project_dir = project_dir
-        self.create_model_dirs()
+        if is_train:
+            self.create_model_dirs()
 
         self.resnet = ResNet18_OS8() # NOTE! specify the type of ResNet here
         self.aspp = ASPP(num_classes=self.num_classes) # NOTE! if you use ResNet50-152, set self.aspp = ASPP_Bottleneck(num_classes=self.num_classes) instead

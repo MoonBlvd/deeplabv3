@@ -176,7 +176,8 @@ class ResNet_BasicBlock_OS8(nn.Module):
         if num_layers == 18:
             resnet = models.resnet18()
             # load pretrained model:
-            resnet.load_state_dict(torch.load("/root/deeplabv3/pretrained_models/resnet/resnet18-5c106cde.pth"))
+            # resnet.load_state_dict(torch.load("/root/deeplabv3/pretrained_models/resnet/resnet18-5c106cde.pth"))
+            resnet.load_state_dict(torch.load("/u/bryao/work/Documents/deeplabv3/pretrained_models/resnet/resnet18-5c106cde.pth"))
             # remove fully connected layer, avg pool, layer4 and layer5:
             self.resnet = nn.Sequential(*list(resnet.children())[:-4])
 
@@ -186,7 +187,7 @@ class ResNet_BasicBlock_OS8(nn.Module):
         elif num_layers == 34:
             resnet = models.resnet34()
             # load pretrained model:
-            resnet.load_state_dict(torch.load("/root/deeplabv3/pretrained_models/resnet/resnet34-333f7ec4.pth"))
+            resnet.load_state_dict(torch.load("/u/bryao/work/Documents/deeplabv3/pretrained_models/resnet/resnet34-333f7ec4.pth"))
             # remove fully connected layer, avg pool, layer4 and layer5:
             self.resnet = nn.Sequential(*list(resnet.children())[:-4])
 
